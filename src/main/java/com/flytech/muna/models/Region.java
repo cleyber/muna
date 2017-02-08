@@ -10,10 +10,6 @@ import javax.persistence.SequenceGenerator;
 
 import java.io.Serializable;
 
-
-
-import java.io.Serializable;
-
 @Entity
 @Table(name = "REGIONS")
 public class Region implements Serializable{

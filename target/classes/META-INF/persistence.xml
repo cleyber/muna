@@ -6,8 +6,7 @@
 
 <persistence-unit name="application">
 
-   <!-- <class>jpa.models.Regions</class>
-   <class>jpa.models.Countries</class> -->
+   <class>com.flytech.muna.models.Region</class>
 
    <properties>
      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
