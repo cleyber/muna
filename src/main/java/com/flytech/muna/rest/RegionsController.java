@@ -32,6 +32,7 @@ public class RegionsController {
       entityManager.getTransaction().commit();
       return Response.status(Status.CREATED).build();
    }
+
    @GET
    public Response findAll() {
       EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("application");
@@ -46,12 +47,11 @@ public class RegionsController {
       try{
          EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("application");
          EntityManager entityManager = emFactory.createEntityManager();
-         if(entityManager.find(Region.class, id) != null){
-            Region region = entityManager.find(Region.class, id);
+         Region region = entityManager.find(Region.class, id);
+         if(region != null)
             return Response.ok().entity(region).build();
-         }else{
+         else
             return Response.status(Status.NOT_FOUND).build();
-         }
       }catch(Exception ex){
          return Response.serverError().build();
       }
@@ -63,8 +63,8 @@ public class RegionsController {
       try{
          EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("application");
          EntityManager entityManager = emFactory.createEntityManager();
-         if(entityManager.find(Region.class, id) != null){
-            Region findRegion = entityManager.find(Region.class, id);
+         Region findRegion = entityManager.find(Region.class, id);
+         if(findRegion != null){
             entityManager.getTransaction().begin();
             findRegion.setName(region.getName());
             entityManager.persist(findRegion);
@@ -84,8 +84,8 @@ public class RegionsController {
       try{
          EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("application");
          EntityManager entityManager = emFactory.createEntityManager();
-         if(entityManager.find(Region.class, id) != null){
-            Region region = entityManager.find(Region.class, id);
+         Region region = entityManager.find(Region.class, id);
+         if(region != null){            
             entityManager.getTransaction().begin();
             entityManager.remove(region);
             entityManager.getTransaction().commit();
