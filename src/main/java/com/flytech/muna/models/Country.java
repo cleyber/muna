@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
-import javax.persistence.GenerationType;
 
 import java.io.Serializable;
 import com.flytech.muna.models.Region;
@@ -28,6 +27,7 @@ public class Country implements Serializable {
    @ManyToOne(optional = false)
    @JoinColumn(name = "REGION_ID", referencedColumnName = "REGION_ID")
    private Region region;
+   
 
    public Country(){
    }
