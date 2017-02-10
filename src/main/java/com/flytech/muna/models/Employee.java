@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 
 import java.io.Serializable;
@@ -45,7 +46,7 @@ public class Employee implements Serializable{
    private double salary;
 
    @Column(name = "COMMISSION_PCT")
-   private int commission;
+   private Double commission;
 
    @ManyToOne(optional = false)
    @JoinColumn(name = "JOB_ID", referencedColumnName = "JOB_ID")
@@ -55,11 +56,11 @@ public class Employee implements Serializable{
    @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
    private Department department;
 
-   @ManyToOne
-   @JoinColumn(name = "MANAGER_ID", referencedColumnName = "MANAGER_ID")
+   @ManyToOne(optional = false)
+   @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID")
    private Employee manager;
 
-   public Employee(){      
+   public Employee(){
    }
 
    public void setId(int id){
@@ -118,11 +119,11 @@ public class Employee implements Serializable{
       return salary;
    }
 
-   public void setCommission(int commission){
-      this.commission == commission;
+   public void setCommission(Double commission){
+      this.commission = commission;
    }
 
-   public int getCommission(){
+   public Double getCommission(){
       return commission;
    }
 
