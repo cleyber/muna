@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import java.io.Serializable;
 import java.time.LocalDate;
 import com.flytech.muna.models.Job;
+import java.util.List;
+import java.util.Collection;
 
 @Entity
 @Table(name = "EMPLOYEES")
@@ -31,7 +33,7 @@ public class Employee implements Serializable{
    private String firstName;
 
    @Column(name = "LAST_NAME")
-   private String lastaName;
+   private String lastName;
 
    @Column(name = "EMAIL")
    private String email;
@@ -56,9 +58,12 @@ public class Employee implements Serializable{
    @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
    private Department department;
 
-   @ManyToOne(optional = false)
-   @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID")
+   @ManyToOne
+   @JoinColumn(name  ="MANAGER_ID")
    private Employee manager;
+
+   @OneToMany(mappedBy = "manager")
+   private List<Employee> employee;
 
    public Employee(){
    }
@@ -79,12 +84,12 @@ public class Employee implements Serializable{
       return firstName;
    }
 
-   public void setLastName(String lastaName){
-      this.lastaName = lastaName;
+   public void setLastName(String lastName){
+      this.lastName = lastName;
    }
 
    public String getLastName(){
-      return lastaName;
+      return lastName;
    }
 
    public void setEmail(String email){

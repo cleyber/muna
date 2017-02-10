@@ -7,6 +7,7 @@ com\flytech\muna\models\Location.class
 com\flytech\muna\rest\LocationsController.class
 com\flytech\muna\rest\EmployeesController.class
 com\flytech\muna\rest\RegionsController.class
+com\flytech\muna\rest\DepartmentsController.class
 com\flytech\muna\models\Country.class
 com\flytech\muna\models\Region.class
 com\flytech\muna\rest\JobsController.class

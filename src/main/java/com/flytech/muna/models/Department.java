@@ -34,7 +34,7 @@ public class Department implements Serializable {
    private Location location;
 
    @ManyToOne
-   @JoinColumn(name = "MANAGER_ID", referencedColumnName = "MANAGER_ID")
+   @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID")
    private Employee manager;
 
    public Department(){
