@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import java.io.Serializable;
 import com.flytech.muna.models.Location;
 import com.flytech.muna.models.Employee;
+import java.util.List;
 
 @Entity
 @Table(name = "DEPARTMENTS")
@@ -35,7 +36,7 @@ public class Department implements Serializable {
 
    @ManyToOne
    @JoinColumn(name = "MANAGER_ID", referencedColumnName = "EMPLOYEE_ID")
-   private Employee manager;
+   private List<Employee> manager;
 
    public Department(){
    }
@@ -64,11 +65,11 @@ public class Department implements Serializable {
       return location;
    }
 
-   public void setManager(Employee manager){
+   public void setManager(List<Employee> manager){
       this.manager = manager;
    }
 
-   public Employee getManager(){
+   public List<Employee> getManager(){
       return manager;
    }
 

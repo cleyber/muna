@@ -10,12 +10,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
+import javax.persistence.CascadeType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import com.flytech.muna.models.Job;
 import java.util.List;
-import java.util.Collection;
 
 @Entity
 @Table(name = "EMPLOYEES")
@@ -58,12 +57,12 @@ public class Employee implements Serializable{
    @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
    private Department department;
 
-   @ManyToOne
-   @JoinColumn(name  ="MANAGER_ID")
+   @ManyToOne(cascade={CascadeType.ALL})
+   @JoinColumn(name = "MANAGER_ID")
    private Employee manager;
 
    @OneToMany(mappedBy = "manager")
-   private List<Employee> employee;
+   private List<Employee> employees;
 
    public Employee(){
    }
@@ -146,6 +145,22 @@ public class Employee implements Serializable{
 
    public Department getDepartment(){
       return department;
+   }
+
+   public void setManager(Employee manager){
+      this.manager = manager;
+   }
+
+   public Employee getManager(){
+      return manager;
+   }
+
+   public void setEmployees(List<Employee> employees){
+      this.employees = employees;
+   }
+
+   public List<Employee> getEmployees(){
+      return employees;
    }
 
 
