@@ -7,8 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "REGIONS")
@@ -24,6 +28,9 @@ public class Region implements Serializable{
 
    @Column(name = "REGION_NAME")
    private String name;
+
+   @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="region")
+   private List<Country> countries;
 
    public Region(){
    }
@@ -42,6 +49,14 @@ public class Region implements Serializable{
 
    public String getName(){
       return name;
+   }
+
+   public void setCountries(List<Country> countries){
+      this.countries = countries;
+   }
+
+   public List<Country> getCountries(){
+      return countries;
    }
 
    @Override

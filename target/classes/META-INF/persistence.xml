@@ -9,10 +9,10 @@
    <class>com.flytech.muna.models.Region</class>
    <class>com.flytech.muna.models.Country</class>
    <class>com.flytech.muna.models.Job</class>
-   <class>com.flytech.muna.models.JobHistory</class>
-   <class>com.flytech.muna.models.Employee</class>
+   <!-- <class>com.flytech.muna.models.JobHistory</class> -->
+   <!-- <class>com.flytech.muna.models.Employee</class>
    <class>com.flytech.muna.models.Location</class>
-   <class>com.flytech.muna.models.Department</class>
+   <class>com.flytech.muna.models.Department</class> -->
 
    <properties>
      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
