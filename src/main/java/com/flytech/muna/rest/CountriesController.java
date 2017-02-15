@@ -74,4 +74,24 @@ public class CountriesController {
       }
    }
 
+   @Path("{id}")
+   @DELETE
+   public Response delete(@PathParam("id") String id){
+      try{
+         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("application");
+         EntityManager entityManager = emFactory.createEntityManager();
+         Country country = entityManager.find(Country.class, id);
+         if(country != null){
+            entityManager.getTransaction().begin();
+            entityManager.remove(country);
+            entityManager.getTransaction().commit();
+            return Response.noContent().build();
+         }else{
+            return Response.status(Status.NOT_FOUND).build();
+         }
+      }catch(Exception ex){
+         return Response.serverError().build();
+      }
+   }
+
 }

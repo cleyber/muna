@@ -29,9 +29,6 @@ public class Region implements Serializable{
    @Column(name = "REGION_NAME")
    private String name;
 
-   @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="region")
-   private List<Country> countries;
-
    public Region(){
    }
 
@@ -51,14 +48,7 @@ public class Region implements Serializable{
       return name;
    }
 
-   public void setCountries(List<Country> countries){
-      this.countries = countries;
-   }
-
-   public List<Country> getCountries(){
-      return countries;
-   }
-
+   
    @Override
    public String toString(){
       return "Region: [ Id: " + id + ", Name: " + name + " ]";
