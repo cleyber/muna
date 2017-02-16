@@ -12,24 +12,24 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
-import com.flytech.muna.models.Employee;
+import com.flytech.muna.models.Department;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-@Path("employee")
-public class EmployeesController {
+@Path("department")
+public class DepartmentsController {
 
    @POST
-   public Response save(Employee employee){
+   public Response save(Department department){
       try{
          EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("application");
          EntityManager entityManager = emFactory.createEntityManager();
          entityManager.getTransaction().begin();
-         entityManager.persist(employee);
+         entityManager.persist(department);
          entityManager.getTransaction().commit();
-         return Response.status(Status.CREATED).entity(employee).build();
+         return Response.status(Status.CREATED).entity(department).build();
       }catch(Exception ex){
          return Response.ok(ex.getMessage()).build();
       }
@@ -40,11 +40,13 @@ public class EmployeesController {
       try{
          EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("application");
          EntityManager entityManager = emFactory.createEntityManager();
-         List<Employee> employees = entityManager.createQuery("FROM Employee").getResultList();
-         return Response.ok(employees).build();
+         List<Department> departments = entityManager.createQuery("FROM Department").getResultList();
+         return Response.ok(departments).build();
       }catch(Exception ex){
          return Response.ok(ex.getMessage()).build();
       }
 
    }
+
+
 }

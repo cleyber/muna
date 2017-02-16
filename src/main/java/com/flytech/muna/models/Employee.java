@@ -14,7 +14,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -42,10 +42,10 @@ public class Employee implements Serializable{
    private String phone;
 
    @Column(name = "HIRE_DATE")
-   private LocalDate hireDate;
+   private Date hireDate;
 
    @Column(name = "SALARY")
-   private double salary;
+   private int salary;
 
    @Column(name = "COMMISSION_PCT")
    private Double commission;
@@ -53,14 +53,15 @@ public class Employee implements Serializable{
    // @ManyToOne(optional = false)
    // @JoinColumn(name = "JOB_ID")
    // private Job job;
-
+   //
    // @ManyToOne(optional = false)
-   // @JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
+   // @JoinColumn(name = "DEPARTMENT_ID")
    // private Department department;
 
    // @ManyToOne(fetch = FetchType.EAGER)
    // @JoinColumn(name = "MANAGER_ID")
-   // private Employee manager;
+   @Column(name = "MANAGER_ID")
+   private Employee manager;
 
    // @OneToMany(mappedBy = "manager")
    // private List<Employee> employees;
@@ -108,19 +109,19 @@ public class Employee implements Serializable{
       return phone;
    }
 
-   public void setHireDate(LocalDate hireDate){
+   public void setHireDate(Date hireDate){
       this.hireDate = hireDate;
    }
 
-   public LocalDate getHireDate(){
+   public Date getHireDate(){
       return hireDate;
    }
 
-   public void setSalary(double salary){
+   public void setSalary(int salary){
       this.salary = salary;
    }
 
-   public double getSalary(){
+   public int getSalary(){
       return salary;
    }
 
@@ -139,7 +140,7 @@ public class Employee implements Serializable{
    // public Job getJob(){
    //    return job;
    // }
-
+   //
    // public void setDepartment(Department department){
    //    this.department = department;
    // }
@@ -148,13 +149,13 @@ public class Employee implements Serializable{
    //    return department;
    // }
 
-   // public void setManager(Employee manager){
-   //    this.manager = manager;
-   // }
-   //
-   // public Employee getManager(){
-   //    return manager;
-   // }
+   public void setManager(Employee manager){
+      this.manager = manager;
+   }
+
+   public Employee getManager(){
+      return manager;
+   }
 
    // public void setEmployees(List<Employee> employees){
    //    this.employees = employees;
