@@ -17,6 +17,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 @Path("employee")
 public class EmployeesController {
@@ -27,6 +29,8 @@ public class EmployeesController {
          EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("application");
          EntityManager entityManager = emFactory.createEntityManager();
          entityManager.getTransaction().begin();
+         Employee employee2 = new Employee();
+         employee.setHireDate(parseDate(employee.getHireDate()));
          entityManager.persist(employee);
          entityManager.getTransaction().commit();
          return Response.status(Status.CREATED).entity(employee).build();
@@ -47,4 +51,15 @@ public class EmployeesController {
       }
 
    }
+
+   private Date parseDate(String fecha) {
+      try {
+        SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd");
+        java.util.Date date = format.parse(fecha);
+
+        return new Date(date.getTime());
+      } catch(Exception e) {
+        return null;
+      }
+    }
 }

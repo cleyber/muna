@@ -14,8 +14,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
+import java.sql.Date;
 
 @Entity
 @Table(name = "EMPLOYEES")
@@ -50,10 +51,10 @@ public class Employee implements Serializable{
    @Column(name = "COMMISSION_PCT")
    private Double commission;
 
-   // @ManyToOne(optional = false)
-   // @JoinColumn(name = "JOB_ID")
-   // private Job job;
-   //
+   @ManyToOne
+   @JoinColumn(name = "JOB_ID")
+   private Job job;
+
    // @ManyToOne(optional = false)
    // @JoinColumn(name = "DEPARTMENT_ID")
    // private Department department;
@@ -133,14 +134,14 @@ public class Employee implements Serializable{
       return commission;
    }
 
-   // public void setJob(Job job){
-   //    this.job = job;
-   // }
-   //
-   // public Job getJob(){
-   //    return job;
-   // }
-   //
+   public void setJob(Job job){
+      this.job = job;
+   }
+
+   public Job getJob(){
+      return job;
+   }
+
    // public void setDepartment(Department department){
    //    this.department = department;
    // }
@@ -157,13 +158,6 @@ public class Employee implements Serializable{
       return manager;
    }
 
-   // public void setEmployees(List<Employee> employees){
-   //    this.employees = employees;
-   // }
-   //
-   // public List<Employee> getEmployees(){
-   //    return employees;
-   // }
 
 
 }

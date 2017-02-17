@@ -71,6 +71,14 @@
          <artifactId>ojdbc6</artifactId>
          <version>6</version>
       </dependency>
+
+      <!-- hibernate 5 - Java8 -->
+      <dependency>
+      	<groupId>org.hibernate</groupId>
+      	<artifactId>hibernate-java8</artifactId>
+      	<version>5.2.7.Final</version>
+      </dependency>
+
     </dependencies>
 
 
