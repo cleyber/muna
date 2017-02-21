@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering
+  SYSTEM "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <schema-selection match-schema="SYSTEM"/>
+    <type-mapping>
+        <sql-type jdbc-type="OTHER" hibernate-type="java.util.Date" />
+    </type-mapping>
+</hibernate-reverse-engineering>

@@ -12,11 +12,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "EMPLOYEES")
@@ -42,6 +44,7 @@ public class Employee implements Serializable{
    @Column(name = "PHONE_NUMBER")
    private String phone;
 
+   @Temporal(TemporalType.DATE)
    @Column(name = "HIRE_DATE")
    private Date hireDate;
 
@@ -51,9 +54,10 @@ public class Employee implements Serializable{
    @Column(name = "COMMISSION_PCT")
    private Double commission;
 
-   @ManyToOne
-   @JoinColumn(name = "JOB_ID")
-   private Job job;
+   // @ManyToOne
+   // @JoinColumn(name = "JOB_ID")
+   @Column(name = "JOB_ID")
+   private String job;
 
    // @ManyToOne(optional = false)
    // @JoinColumn(name = "DEPARTMENT_ID")
@@ -134,11 +138,11 @@ public class Employee implements Serializable{
       return commission;
    }
 
-   public void setJob(Job job){
+   public void setJob(String job){
       this.job = job;
    }
 
-   public Job getJob(){
+   public String getJob(){
       return job;
    }
 
@@ -158,6 +162,12 @@ public class Employee implements Serializable{
       return manager;
    }
 
+   @Override
+   public String toString(){
+      return "Employee [ Id: " + id + ", First Name: " + firstName +
+      ", Last Name: " + lastName + ", Email: " + email + ", Phone: " + phone +
+      ", Job id: " + job + ", Hire Date: " + hireDate + " ]";
+   }
 
 
 }

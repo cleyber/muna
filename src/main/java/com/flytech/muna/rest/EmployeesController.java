@@ -17,10 +17,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 
+
 @Path("employee")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class EmployeesController {
 
    @POST
@@ -29,14 +32,20 @@ public class EmployeesController {
          EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("application");
          EntityManager entityManager = emFactory.createEntityManager();
          entityManager.getTransaction().begin();
-         Employee employee2 = new Employee();
-         employee.setHireDate(parseDate(employee.getHireDate()));
          entityManager.persist(employee);
          entityManager.getTransaction().commit();
          return Response.status(Status.CREATED).entity(employee).build();
       }catch(Exception ex){
          return Response.ok(ex.getMessage()).build();
       }
+
+
+      // try{
+      //    System.out.println(employee);
+      //    return Response.ok(employee).build();
+      // }catch(Exception ex){
+      //    return Response.ok(ex.getMessage()).build();
+      // }
    }
 
    @GET
@@ -62,4 +71,17 @@ public class EmployeesController {
         return null;
       }
     }
+
+   //  public static Date convertirStrigToDate(String fecha, String format) {
+    //
+   //      SimpleDateFormat spdf = new SimpleDateFormat(format);
+   //      Date fechaRetorno = null;
+   //      try {
+   //          fechaRetorno = spdf.parse(fecha);
+   //      }
+   //      catch (ParseException e) {
+   //          e.printStackTrace();
+   //      }
+   //      return fechaRetorno;
+   //  }
 }
