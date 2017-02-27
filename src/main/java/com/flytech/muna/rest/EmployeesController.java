@@ -39,13 +39,6 @@ public class EmployeesController {
          return Response.ok(ex.getMessage()).build();
       }
 
-
-      // try{
-      //    System.out.println(employee);
-      //    return Response.ok(employee).build();
-      // }catch(Exception ex){
-      //    return Response.ok(ex.getMessage()).build();
-      // }
    }
 
    @GET
@@ -61,27 +54,16 @@ public class EmployeesController {
 
    }
 
-   private Date parseDate(String fecha) {
-      try {
-        SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd");
-        java.util.Date date = format.parse(fecha);
+   @Path("{id}")
+   @GET
+   public Response find(@PathParam("id") int id){
+      EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("application");
+      EntityManager entityManager = emFactory.createEntityManager();
+      Employee employee = entityManager.find(Employee.class, id);
+      if(employee != null)
+         return Response.ok(employee).build();
+      else
+         return Response.status(Status.NOT_FOUND).build();
+   }
 
-        return new Date(date.getTime());
-      } catch(Exception e) {
-        return null;
-      }
-    }
-
-   //  public static Date convertirStrigToDate(String fecha, String format) {
-    //
-   //      SimpleDateFormat spdf = new SimpleDateFormat(format);
-   //      Date fechaRetorno = null;
-   //      try {
-   //          fechaRetorno = spdf.parse(fecha);
-   //      }
-   //      catch (ParseException e) {
-   //          e.printStackTrace();
-   //      }
-   //      return fechaRetorno;
-   //  }
 }

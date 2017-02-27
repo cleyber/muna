@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
@@ -20,6 +21,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.*;
+
+//Posible solucion a anidaciones en el jackson
+// @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee implements Serializable{
@@ -49,27 +54,30 @@ public class Employee implements Serializable{
    private Date hireDate;
 
    @Column(name = "SALARY")
-   private int salary;
+   private double salary;
 
-   @Column(name = "COMMISSION_PCT")
+   @Column(name = "COMMISSION_PCT", nullable = true)
    private Double commission;
 
-   // @ManyToOne
-   // @JoinColumn(name = "JOB_ID")
-   @Column(name = "JOB_ID")
-   private String job;
 
-   // @ManyToOne(optional = false)
+   // @ManyToOne(fetch =FetchType.EAGER)
+   // @JoinColumn(name = "JOB_ID")
+   // private Job job;
+
+   // @ManyToOne(fetch =FetchType.EAGER)
    // @JoinColumn(name = "DEPARTMENT_ID")
    // private Department department;
 
-   // @ManyToOne(fetch = FetchType.EAGER)
-   // @JoinColumn(name = "MANAGER_ID")
-   @Column(name = "MANAGER_ID")
+
+   @ManyToOne
+   @JoinColumn(name = "MANAGER_ID")
+   // @JsonBackReference
    private Employee manager;
 
-   // @OneToMany(mappedBy = "manager")
-   // private List<Employee> employees;
+
+   @OneToMany(mappedBy = "manager")
+   // @JsonManagedReference
+   private List<Employee> employees;
 
    public Employee(){
    }
@@ -122,11 +130,11 @@ public class Employee implements Serializable{
       return hireDate;
    }
 
-   public void setSalary(int salary){
+   public void setSalary(double salary){
       this.salary = salary;
    }
 
-   public int getSalary(){
+   public double getSalary(){
       return salary;
    }
 
@@ -138,14 +146,14 @@ public class Employee implements Serializable{
       return commission;
    }
 
-   public void setJob(String job){
-      this.job = job;
-   }
-
-   public String getJob(){
-      return job;
-   }
-
+   // public void setJob(Job job){
+   //    this.job = job;
+   // }
+   //
+   // public Job getJob(){
+   //    return job;
+   // }
+   //
    // public void setDepartment(Department department){
    //    this.department = department;
    // }
@@ -162,12 +170,11 @@ public class Employee implements Serializable{
       return manager;
    }
 
-   @Override
-   public String toString(){
-      return "Employee [ Id: " + id + ", First Name: " + firstName +
-      ", Last Name: " + lastName + ", Email: " + email + ", Phone: " + phone +
-      ", Job id: " + job + ", Hire Date: " + hireDate + " ]";
-   }
-
+   // @Override
+   // public String toString(){
+   //    return "Employee [ Id: " + id + ", First Name: " + firstName +
+   //    ", Last Name: " + lastName + ", Email: " + email + ", Phone: " + phone +
+   //    ", Job id: " + job + ", Hire Date: " + hireDate + " ]";
+   // }
 
 }

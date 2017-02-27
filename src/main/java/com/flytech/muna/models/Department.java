@@ -10,6 +10,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.FetchType;
 
 import java.io.Serializable;
 import com.flytech.muna.models.Location;
@@ -31,11 +32,11 @@ public class Department implements Serializable {
    @Column(name = "DEPARTMENT_NAME")
    private String name;
 
-   @ManyToOne
+   @ManyToOne(fetch =FetchType.EAGER)
    @JoinColumn(name = "LOCATION_ID")
    private Location location;
 
-   @OneToOne
+   @OneToOne(fetch =FetchType.EAGER)
    @JoinColumn(name = "MANAGER_ID")
    private Employee manager;
 
