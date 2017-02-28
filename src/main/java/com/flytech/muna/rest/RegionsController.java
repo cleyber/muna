@@ -18,7 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-@Path("region")
+@Path("regions")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class RegionsController {
@@ -85,7 +85,7 @@ public class RegionsController {
          EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("application");
          EntityManager entityManager = emFactory.createEntityManager();
          Region region = entityManager.find(Region.class, id);
-         if(region != null){            
+         if(region != null){
             entityManager.getTransaction().begin();
             entityManager.remove(region);
             entityManager.getTransaction().commit();

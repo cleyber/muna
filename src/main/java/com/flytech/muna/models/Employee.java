@@ -60,13 +60,13 @@ public class Employee implements Serializable{
    private Double commission;
 
 
-   // @ManyToOne(fetch =FetchType.EAGER)
-   // @JoinColumn(name = "JOB_ID")
-   // private Job job;
+   @ManyToOne(fetch =FetchType.EAGER)
+   @JoinColumn(name = "JOB_ID")
+   private Job job;
 
-   // @ManyToOne(fetch =FetchType.EAGER)
-   // @JoinColumn(name = "DEPARTMENT_ID")
-   // private Department department;
+   @ManyToOne(fetch =FetchType.EAGER)
+   @JoinColumn(name = "DEPARTMENT_ID")
+   private Department department;
 
 
    @ManyToOne
@@ -146,21 +146,21 @@ public class Employee implements Serializable{
       return commission;
    }
 
-   // public void setJob(Job job){
-   //    this.job = job;
-   // }
-   //
-   // public Job getJob(){
-   //    return job;
-   // }
-   //
-   // public void setDepartment(Department department){
-   //    this.department = department;
-   // }
-   //
-   // public Department getDepartment(){
-   //    return department;
-   // }
+   public void setJob(Job job){
+      this.job = job;
+   }
+
+   public Job getJob(){
+      return job;
+   }
+
+   public void setDepartment(Department department){
+      this.department = department;
+   }
+
+   public Department getDepartment(){
+      return department;
+   }
 
    public void setManager(Employee manager){
       this.manager = manager;

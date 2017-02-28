@@ -21,7 +21,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 
-@Path("employee")
+@Path("employees")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class EmployeesController {
